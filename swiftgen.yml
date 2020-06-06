@@ -1,5 +1,5 @@
-input_dir: Template/Resources
-output_dir: Template/Sources/Generated
+input_dir: {Template}/Resources
+output_dir: {Template}/Sources/Generated
 
 xcassets:
     inputs: 
