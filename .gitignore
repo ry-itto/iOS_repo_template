@@ -90,3 +90,6 @@ vendor/
 
 ## dotenv
 .env
+
+## npm
+node_modules/

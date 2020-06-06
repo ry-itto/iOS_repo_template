@@ -16,6 +16,18 @@
 default_platform(:ios)
 
 platform :ios do
+  desc 'Distribute iOS App'
+  lane :distribute_app do
+    firebase_app_distribution(
+        app: ENV['FIREBASE_APP_ID_IOS'],
+        groups: "gotties",
+        ipa_path: ENV['IPA_PATH'],
+        release_notes: ENV['RELEASE_NOTE'],
+        firebase_cli_path: "./node_modules/firebase-tools/lib/bin/firebase.js",
+        firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
+    )
+  end
+
   desc "Push a new beta build to TestFlight"
   lane :beta do
     build_app(scheme: "Template")

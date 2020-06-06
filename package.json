@@ -1,0 +1,23 @@
+{
+  "name": "ios_repo_template",
+  "version": "1.0.0",
+  "description": "- iOS Project with XcodeGen. - SwiftGen to generate Asset/Strings swift file. - Lint/Format - CD with Firebase AppDistribution",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-tools": "^8.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ry-itto/iOS_repo_template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ry-itto/iOS_repo_template/issues"
+  },
+  "homepage": "https://github.com/ry-itto/iOS_repo_template#readme"
+}
