@@ -1,12 +1,5 @@
 #! /bin/bash
 
-REPLACEMENT_TARGET_FILES='
-project.yml
-swiftgen.yml
-.swiftlint.yml
-'
-REPLACEMENT_TARGET={Template}
-
 check_depends() {
     if ! type "brew" > /dev/null; then
         echo '`brew` not found. Please install Homebrew'
@@ -37,6 +30,13 @@ dependencies() {
 }
 
 replace_project_name() {
+    REPLACEMENT_TARGET_FILES='
+    project.yml
+    swiftgen.yml
+    .swiftlint.yml
+    '
+    REPLACEMENT_TARGET={Template}
+
     project_name=$1
     for file in $REPLACEMENT_TARGET_FILES; do
         sed -i "" "s/$REPLACEMENT_TARGET/$project_name/g" $file
@@ -44,10 +44,24 @@ replace_project_name() {
     mv $REPLACEMENT_TARGET $project_name
 }
 
+replace_bundle_identifier() {
+    REPLACEMENT_TARGET_FILES='
+    project.yml
+    fastlane/Appfile
+    '
+    REPLACEMENT_TARGET={BUNDLE_IDENTIFIER}
+    
+    bundle_identifier=$1
+    for file in $REPLACEMENT_TARGET_FILES; do
+        sed -i "" "s/$REPLACEMENT_TARGET/$bundle_identifier/g" $file
+    done
+}
+
 main() {
     check_depends
     dependencies
     replace_project_name $1
+    replace_bundle_identifier $2
 }
 
-main $1
+main $1 $2

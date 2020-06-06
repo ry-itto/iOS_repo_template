@@ -87,3 +87,6 @@ iOSInjectionProject/
 
 ## Gem
 vendor/
+
+## dotenv
+.env

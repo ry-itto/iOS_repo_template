@@ -1,6 +1,4 @@
 name: {Template}
-options:
-    bundleIdPrefix: com.example.template
 
 targets:
     {Template}:
@@ -14,3 +12,5 @@ targets:
         postBuildScripts:
             - path: scripts/format.sh
               name: "Run Format"
+        settings:
+            PRODUCT_BUNDLE_IDENTIFIER: {BUNDLE_IDENTIFIER}
