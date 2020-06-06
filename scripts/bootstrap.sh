@@ -57,7 +57,19 @@ replace_bundle_identifier() {
     done
 }
 
+set_git_hook() {
+
+    PROJECT_DIR=$(cd $(dirname $0)/..; pwd)
+
+    if [ -e "$PROJECT_DIR/.git" ]; then
+       ln -sf ../../scripts/hooks/pre-push .git/hooks/pre-push
+       ln -sf ../../scripts/hooks/pre-commit .git/hooks/pre-commit
+       ln -sf ../../scripts/hooks/post-merge .git/hooks/post-merge
+   fi
+}
+
 main() {
+    set_git_hook
     check_depends
     dependencies
     replace_project_name $1
