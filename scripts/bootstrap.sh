@@ -47,7 +47,7 @@ replace_project_name() {
 main() {
     check_depends
     dependencies
-    replace_project_name hoge
+    replace_project_name $1
 }
 
-main
+main $1
