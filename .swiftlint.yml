@@ -1,0 +1,10 @@
+disabled_rules:
+  - line_length
+  - identifier_name
+  - todo
+  - trailing_comma
+opt_in_rules:
+  - closure_end_indentation
+excluded:
+  - Carthage
+  - Pods

@@ -1,0 +1,16 @@
+name: Template
+options:
+    bundleIdPrefix: com.example.template
+
+targets:
+    Template:
+        type: application
+        platform: iOS
+        deploymentTarget: "13.0"
+        sources: [Template]
+        preBuildScripts:
+            - path: scripts/lint.sh
+              name: "Run Lint"
+        postBuildScripts:
+            - path: scripts/format.sh
+              name: "Run Format"

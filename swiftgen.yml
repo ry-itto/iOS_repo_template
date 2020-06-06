@@ -1,0 +1,11 @@
+input_dir: Template/Resources
+output_dir: Template/Sources/Generated
+
+xcassets:
+    inputs: 
+    - Assets.xcassets
+    - Preview Content/Preview Assets.xcassets
+    outputs: 
+    - templateName: swift4
+      output: Assets.swift
+
