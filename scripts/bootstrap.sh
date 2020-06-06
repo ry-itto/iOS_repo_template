@@ -58,14 +58,9 @@ replace_bundle_identifier() {
 }
 
 set_git_hook() {
+   REPO_ROOT=$(git rev-parse --show-toplevel)
 
-    PROJECT_DIR=$(cd $(dirname $0)/..; pwd)
-
-    if [ -e "$PROJECT_DIR/.git" ]; then
-       ln -sf ../../scripts/hooks/pre-push .git/hooks/pre-push
-       ln -sf ../../scripts/hooks/pre-commit .git/hooks/pre-commit
-       ln -sf ../../scripts/hooks/post-merge .git/hooks/post-merge
-   fi
+   \cp -fR "$REPO_ROOT"/scripts/git-hooks/* "$REPO_ROOT"/.git/hooks
 }
 
 main() {
