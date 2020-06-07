@@ -3,6 +3,7 @@
 set -eu
 
 echo "Generate xcodeproj file by XcodeGen...."
+
 mint run xcodegen generate --use-cache
 
 if [ $(which carthage) ]; then
