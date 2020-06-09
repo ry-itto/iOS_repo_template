@@ -4,3 +4,6 @@ PROJECT_NAME:=Test
 .PHONY: init
 init:
 	./scripts/bootstrap.sh $(PROJECT_NAME) $(BUNDLE_IDENTIFIER)
+.PHONY: xcodegen
+xcodegen:
+	./scripts/xcodegen.sh
