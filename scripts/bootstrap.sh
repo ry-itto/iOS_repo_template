@@ -57,7 +57,14 @@ replace_bundle_identifier() {
     done
 }
 
+set_git_hook() {
+   REPO_ROOT=$(git rev-parse --show-toplevel)
+
+   \cp -fR "$REPO_ROOT"/scripts/git-hooks/* "$REPO_ROOT"/.git/hooks
+}
+
 main() {
+    set_git_hook
     check_depends
     dependencies
     replace_project_name $1
