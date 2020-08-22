@@ -1,0 +1,8 @@
+require 'dotenv'
+
+# format: https://{Personal Access Token}:x-oauth-basic@github.com/{Organization}/{Repo name}
+git_url(ENV['MATCH_GIT_URL'])
+
+storage_mode("git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
