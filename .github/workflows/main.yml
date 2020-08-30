@@ -1,0 +1,49 @@
+# This workflow uses in Template repository only.
+
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  distribute:
+    runs-on: macOS-latest
+    env:
+      MINT_PATH: mint/lib
+      MINT_LINK_PATH: mint/bin
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Gem
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Cache Mint
+        uses: actions/cache@v2
+        with:
+          path: mint
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+          restore-keys: |
+            ${{ runner.os }}-mint-
+      - name: Cache npm
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-mint-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Init
+        run: make init
+      - name: XcodeGen generate
+        run: xcodegen
+      - name: Build & Distribute
+        run: bundle exec fastlane distribute
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
