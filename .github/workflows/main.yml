@@ -48,7 +48,7 @@ jobs:
       - name: Init
         run: ./scripts/bootstrap.sh Test com.example.template.Template true
       - name: XcodeGen generate
-        run: xcodegen
+        run: mint run xcodegen
       - name: Build & Distribute
         run: bundle exec fastlane distribute
         env:
