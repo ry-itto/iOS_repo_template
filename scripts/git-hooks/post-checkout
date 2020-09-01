@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eu
+
+"$(git rev-parse --show-toplevel)"/scripts/xcodegen.sh

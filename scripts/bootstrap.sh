@@ -57,6 +57,12 @@ replace_bundle_identifier() {
     done
 }
 
+set_git_hook() {
+   REPO_ROOT=$(git rev-parse --show-toplevel)
+
+   \cp -fR "$REPO_ROOT"/scripts/git-hooks/* "$REPO_ROOT"/.git/hooks
+}
+
 main() {
     project_name=$1
     bundle_identifier=$2
@@ -64,6 +70,7 @@ main() {
     if ! $is_ci; then
         check_depends
     fi
+    set_git_hook
     dependencies
     replace_project_name $project_name
     replace_bundle_identifier $bundle_identifier
