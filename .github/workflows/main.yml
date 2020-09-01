@@ -38,8 +38,10 @@ jobs:
           key: ${{ runner.os }}-mint-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install rbenv
-        run: brew install rbenv
+      - name: Install rbenv & Ruby
+        run: |
+          brew install rbenv
+          rbenv install 2.7.1
       - name: Init
         run: make init
       - name: XcodeGen generate
