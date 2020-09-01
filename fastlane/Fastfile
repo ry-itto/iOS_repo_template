@@ -47,7 +47,7 @@ platform :ios do
     firebase_app_distribution(
       app: ENV['FIREBASE_APP_ID_IOS'],
       groups: "gotties",
-      ipa_path: ENV['IPA_PATH'],
+      ipa_path: "#{Dir.pwd}/../{Template}.ipa",
       release_notes: ENV['RELEASE_NOTE'],
       firebase_cli_path: "#{Dir.pwd}/../node_modules/firebase-tools/lib/bin/firebase.js",
       firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
