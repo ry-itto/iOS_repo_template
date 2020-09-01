@@ -51,7 +51,7 @@ jobs:
           eval "$(rbenv init -)"
           rbenv install -s `cat .ruby-version`
       - name: Init
-        run: make init
+        run: ./scripts/bootstrap.sh Test com.example.template.Template true
       - name: XcodeGen generate
         run: xcodegen
       - name: Build & Distribute
