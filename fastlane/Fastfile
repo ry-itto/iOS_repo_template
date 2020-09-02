@@ -18,13 +18,39 @@ default_platform(:ios)
 platform :ios do
   desc 'Distribute iOS App'
   lane :distribute_app do
+    if is_ci?
+      create_keychain(
+        name: ENV['MATCH_KEYCHAIN_NAME'],
+        password: ENV['MATCH_KEYCHAIN_PASSWORD'],
+        default_keychain: true,
+        unlock: true,
+        timeout: 1800,
+        lock_when_sleeps: false
+      )
+    end
+    match(
+      readonly: is_ci,
+      keychain_name: ENV['MATCH_KEYCHAIN_NAME'],
+      keychain_password: ENV['MATCH_KEYCHAIN_PASSWORD']
+    )
+    update_project_provisioning(
+      xcodeproj: "{Template}.xcodeproj",
+      profile: ENV["sigh_{BUNDLE_IDENTIFIER}_development_profile-path"],
+      code_signing_identity: ENV['CODE_SIGNING_IDENTITY']
+    )
+    build_app(
+      scheme: "Sample",
+      export_options: {
+        method: "development"
+      }
+    )
     firebase_app_distribution(
-        app: ENV['FIREBASE_APP_ID_IOS'],
-        groups: "gotties",
-        ipa_path: ENV['IPA_PATH'],
-        release_notes: ENV['RELEASE_NOTE'],
-        firebase_cli_path: "./node_modules/firebase-tools/lib/bin/firebase.js",
-        firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
+      app: ENV['FIREBASE_APP_ID_IOS'],
+      groups: "gotties",
+      ipa_path: "#{Dir.pwd}/../{Template}.ipa",
+      release_notes: ENV['RELEASE_NOTE'],
+      firebase_cli_path: "#{Dir.pwd}/../node_modules/firebase-tools/lib/bin/firebase.js",
+      firebase_cli_token: ENV['FIREBASE_CLI_TOKEN'],
     )
   end
 

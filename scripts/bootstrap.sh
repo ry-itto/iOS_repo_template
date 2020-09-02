@@ -64,11 +64,16 @@ set_git_hook() {
 }
 
 main() {
+    project_name=$1
+    bundle_identifier=$2
+    is_ci=$3
+    if ! $is_ci; then
+        check_depends
+    fi
     set_git_hook
-    check_depends
     dependencies
-    replace_project_name $1
-    replace_bundle_identifier $2
+    replace_project_name $project_name
+    replace_bundle_identifier $bundle_identifier
 }
 
 main $1 $2
