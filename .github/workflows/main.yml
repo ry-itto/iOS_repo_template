@@ -50,7 +50,7 @@ jobs:
       - name: XcodeGen generate
         run: mint run xcodegen
       - name: Build & Distribute
-        run: bundle exec fastlane distribute
+        run: bundle exec fastlane distribute_app
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           ITC_TEAM_ID: ${{ secrets.ITC_TEAM_ID }}
